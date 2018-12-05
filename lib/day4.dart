@@ -1,3 +1,5 @@
+import 'package:adventofcode2018/util.dart';
+
 const input = '''[1518-06-03 00:32] wakes up
 [1518-07-24 00:47] wakes up
 [1518-08-13 00:56] wakes up
@@ -1120,8 +1122,6 @@ void main() {
     var minute = int.parse(line.substring(15,17));
     if (line.contains("Guard")) {
       guard = int.parse(line.substring(26, line.indexOf(" ", 26)));
-      print(guard);
-
       if (!totalSleep.containsKey(guard)) totalSleep[guard] = List.filled(60, 0);
       prevMinute = 0;
     }
@@ -1141,6 +1141,8 @@ void main() {
     }
   }
 
+  part1(maxGuard, max);
+
   var maxSleep = 0;
   var maxMinute;
   for (var value in totalSleep.entries) {
@@ -1152,17 +1154,11 @@ void main() {
         maxMinute = minute;
       }
     }
-    for (var minute in value.value) {
-    }
   }
   print ('$maxGuard * $maxMinute = ${maxGuard * maxMinute}');
-
-//  part1(maxGuard, max);
 }
 
 void part1(int maxGuard, List<int> max) {
-
-  print('$maxGuard: $max');
   var maxSleep = 0;
   var maxIndex;
   for (int i = 0; i < max.length; i++) {
@@ -1174,5 +1170,3 @@ void part1(int maxGuard, List<int> max) {
   }
   print('$maxGuard * $maxIndex = ${maxGuard * maxIndex}');
 }
-
-sum(List<int> list) => list.isEmpty ? 0 : list.reduce((a,b) => a+b);

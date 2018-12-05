@@ -1,4 +1,3 @@
 name: 'adventofcode2018'
 
 dependencies:
-  string_scanner: "^1.0.4"

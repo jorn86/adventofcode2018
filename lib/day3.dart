@@ -1,3 +1,5 @@
+import 'package:adventofcode2018/util.dart';
+
 const input = '''#1 @ 167,777: 23x12
 #2 @ 253,106: 10x25
 #3 @ 104,622: 11x25
@@ -1331,10 +1333,7 @@ var regex = RegExp(r"#(\d+)\s@\s(\d+),(\d+):\s(\d+)x(\d+)");
 
 void main() {
   var overlap = 0;
-  List<List<int>> sheet = [];
-  for (int i = 0; i < 1000; i++) {
-    sheet.add(List.filled(1000, 0));
-  }
+  List<List<int>> sheet = grid(1000, 1000, 0);
   for (var match in regex.allMatches(input)) {
     var left = int.parse(match.group(2));
     var top = int.parse(match.group(3));
