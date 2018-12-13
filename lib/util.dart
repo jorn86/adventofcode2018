@@ -1,5 +1,5 @@
 
-sum(List<int> list) => list.isEmpty ? 0 : list.reduce((a,b) => a+b);
+sum(Iterable<int> list) => list.isEmpty ? 0 : list.reduce((a,b) => a+b);
 
 List<List<E>> grid<E>(int x, int y, E initialValue) {
   var grid = <List<E>>[];
