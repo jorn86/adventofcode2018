@@ -1,5 +1,6 @@
+int matchInt(Match match, {int group = 0}) => int.parse(match.group(group));
 
-sum(Iterable<int> list) => list.isEmpty ? 0 : list.reduce((a,b) => a+b);
+int sum(Iterable<int> list) => list.isEmpty ? 0 : list.reduce((a,b) => a+b);
 
 List<List<E>> grid<E>(int x, int y, E initialValue) {
   var grid = <List<E>>[];
