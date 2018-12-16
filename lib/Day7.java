@@ -1,5 +1,3 @@
-package net.worcade;
-
 import com.google.common.base.Joiner;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;

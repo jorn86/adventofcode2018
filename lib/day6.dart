@@ -1,63 +1,6 @@
-import 'package:adventofcode2018/util.dart' as util;
+import 'dart:io';
 
-const input = '''
-1, 1
-1, 6
-8, 3
-3, 4
-5, 5
-8, 9''';
-const input2 = '''
-162, 168
-86, 253
-288, 359
-290, 219
-145, 343
-41, 301
-91, 214
-166, 260
-349, 353
-178, 50
-56, 79
-273, 104
-173, 118
-165, 47
-284, 235
-153, 69
-116, 153
-276, 325
-170, 58
-211, 328
-238, 346
-333, 299
-119, 328
-173, 289
-44, 223
-241, 161
-225, 159
-266, 209
-293, 95
-89, 86
-281, 289
-50, 253
-75, 347
-298, 241
-88, 158
-40, 338
-291, 156
-330, 88
-349, 289
-165, 102
-232, 131
-338, 191
-178, 335
-318, 107
-335, 339
-153, 156
-88, 119
-163, 268
-159, 183
-162, 134''';
+import 'package:adventofcode2018/util.dart' as util;
 
 var regex = RegExp(r"(\d+), (\d+)");
 
@@ -67,8 +10,8 @@ void main() {
   var minY = 1000;
   var maxY = -1;
   var coordinates = <Coordinate>[];
-  regex.allMatches(input2).forEach((m) {
-    var c = Coordinate(int.parse(m.group(1)), int.parse(m.group(2)));
+  regex.allMatches(File('./lib/day6.txt').readAsStringSync()).forEach((m) {
+    var c = Coordinate(util.matchInt(m, group: 1), util.matchInt(m, group: 2));
     coordinates.add(c);
     if (c.x < minX) minX = c.x;
     if (c.x > maxX) maxX = c.x;
@@ -76,7 +19,6 @@ void main() {
     if (c.y > maxY) maxY = c.y;
   });
   List<List<Space>> grid = util.grid(maxX - minX + 1, maxY - minY + 1, Empty());
-  print('$minX,$maxX:$minY,$maxY; ${grid.length}x${grid[0].length}; ${coordinates.length} coordinates');
   for (int i = 0; i < coordinates.length; i++) {
     var code = String.fromCharCode(i+65);
     coordinates[i].code = code;
@@ -118,8 +60,6 @@ void main() {
   }
   print(size); // part 2
 }
-
-void _printGrid(List<List<Space>> grid) => grid.forEach((col) => print(col.map((a) => a.toString()).reduce((a,b) => '$a$b')));
 
 bool _claim(List<List<Space>> grid, Coordinate coordinate, int distance) {
   var spaces = _surroundingSpaces(grid, coordinate, distance: distance);

@@ -11,17 +11,20 @@ void main() {
       areaPower[x][y] = cellPower[x][y] = (((((rackId * y) + serial) * rackId) ~/ 100) % 10) - 5;
     }
   }
-  print(gridPower(cellPower, 90, 269, 16));
 
   var max = -100;
+  var max3 = -100;
   for (var size = 2; size <= 20; size++) {
-    print('checking size $size');
     for (var x = 1; x <= 301 - size; x++) {
       for (var y = 1; y <= 301 - size; y++) {
         var power = gridPower(cellPower, x, y, size);
+        if (power > max3 && size == 3) {
+          max3 = power;
+          print('part 1: $x,$y: $power');
+        }
         if (power > max) {
           max = power;
-          print('$x,$y,$size: $power');
+          print('part 2: $x,$y,$size: $power');
         }
       }
     }

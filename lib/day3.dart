@@ -1335,10 +1335,10 @@ void main() {
   var overlap = 0;
   List<List<int>> sheet = grid(1000, 1000, 0);
   for (var match in regex.allMatches(input)) {
-    var left = int.parse(match.group(2));
-    var top = int.parse(match.group(3));
-    var wide = int.parse(match.group(4));
-    var tall = int.parse(match.group(5));
+    var left = matchInt(match, group: 2);
+    var top = matchInt(match, group: 3);
+    var wide = matchInt(match, group: 4);
+    var tall = matchInt(match, group: 5);
 
     for (var x = left; x < left + wide; x++) {
       for (var y = top; y < top + tall; y++) {
@@ -1360,11 +1360,11 @@ void main() {
 }
 
 void check(Match match, List<List<int>> sheet) {
-  var id = int.parse(match.group(1));
-  var left = int.parse(match.group(2));
-  var top = int.parse(match.group(3));
-  var wide = int.parse(match.group(4));
-  var tall = int.parse(match.group(5));
+  var id = matchInt(match, group: 1);
+  var left = matchInt(match, group: 2);
+  var top = matchInt(match, group: 3);
+  var wide = matchInt(match, group: 4);
+  var tall = matchInt(match, group: 5);
   for (var x = left; x < left + wide; x++) {
     for (var y = top; y < top + tall; y++) {
       if (sheet[x][y] != 1) return;

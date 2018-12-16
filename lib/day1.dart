@@ -8,7 +8,7 @@ var regex = RegExp(r"[+\-]\d+");
 void main() {
   var nums = <int>[];
   for (var value in regex.allMatches(input)) {
-    nums.add(int.parse(value.group(0)));
+    nums.add(matchInt(value));
   }
   print(sum(nums)); // part 1
 

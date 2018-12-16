@@ -1,22 +1,12 @@
-import 'package:adventofcode2018/util.dart' as util;
 import 'dart:io';
+
+import 'package:adventofcode2018/util.dart' as util;
 
 void main() {
   var carts = <Cart>[];
   var grid = _init(carts);
   int i = 0;
   while (step(carts, grid)) print(i++);
-}
-
-void _printState(List<List<Node>> grid, List<Cart> carts) {
-  for (int x = 0; x < grid.length; x++) {
-    var b = StringBuffer();
-    for (int y = 0; y < grid[x].length; y++) {
-      var cartsHere = carts.where((c) => c.x == x && c.y == y).map((c) => c.direction.toString());
-      b.write(cartsHere.isEmpty ? grid[x][y].toString() : cartsHere.reduce((a,b) => 'X'));
-    }
-    print(b);
-  }
 }
 
 bool step(List<Cart> carts, List<List<Node>> grid) {
